@@ -20,7 +20,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://corinnpope.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 'nniroc'
 github_username: 'corinnpope'
-medium_username: '@nniroc'
+medium_username: 'nniroc'
 
 # Build settings
 markdown: kramdown
@@ -30,7 +30,7 @@ plugins:
 
 ### Phantom settings
 paginate: 10
-footer_text: '© 2019 Corinn Pope'
+footer_text: '© 2020 Corinn Pope'
 admin_name: 'Corinn Pope'
 google_analytics: "UA-18515150-1" # Update with your own tracking ID
 enable_contact: false
@@ -40,3 +40,4 @@ enable_nav: true
 nav_item:
   - { url: '/', text: 'Home' }
   - { url: '/about', text: 'About' }
+  - { url: '/blog', text: 'Blog' }
