@@ -7,37 +7,57 @@
 #
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
+#
+# If you need help with YAML syntax, here are some quick references for you: 
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: "Hey there. I'm Corinn Pope."
-email: 'corinn.pope@gmail.com'
+
+title: Corinn Pope
+email: corinn.pope@gmail.com
 description: "I'm a full-stack product person building useful things on the interwebz."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://corinnpope.com" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: 'nniroc'
-github_username: 'corinnpope'
-medium_username: 'nniroc'
+css: <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+twitter_username: corinnpope
+github_username:  corinnpope
 
 # Build settings
-markdown: kramdown
-# theme: phantom # Uncomment once published to RubyGems
+theme: minima
 plugins:
-  - jekyll-paginate
+  - jekyll-feed
 
-### Phantom settings
-paginate: 10
-footer_text: '© 2020 Corinn Pope'
-admin_name: 'Corinn Pope'
-google_analytics: "UA-18515150-1" # Update with your own tracking ID
-enable_contact: false
 
-#### Phantom Navigation menu
-enable_nav: true
-nav_item:
-  - { url: '/', text: 'Home' }
-  - { url: '/about', text: 'About' }
-  - { url: '/blog', text: 'Blog' }
+collections:
+  projects:
+    order:
+      - speckled.md
+      - designpickle.md
+      - jarhq.md
+      - informaticspro.md
+      - hallway.md
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
