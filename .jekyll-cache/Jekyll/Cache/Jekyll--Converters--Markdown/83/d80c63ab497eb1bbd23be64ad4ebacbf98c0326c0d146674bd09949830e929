@@ -1,0 +1,79 @@
+I"�<h1 id="creating-a-modal-with-vue-rails-6-and-tailwind">Creating a Modal with Vue, Rails 6, and Tailwind</h1>
+<p>January 3, 2020</p>
+
+<p>The latest problem I was stuck on was creating a modal for a rails app. I wanted to use Vue so I could reuse the component over and over again. I also wanted to use TailwindCSS because I like the control I have over styling elements.</p>
+
+<p>I’m using the Vue setup outlined by Chris Oliver in <a href="https://gorails.com/episodes/vuejs-components-in-rails-views?autoplay=1">“Vue.js Components in Rails Views”</a> that wraps everything in a handy vue wrapper.</p>
+
+<p>This is not the most elegant implementation. In a few months I’ll probably look back on this and cringe, but for now I’m putting this out there in case it may help anyone else get a little less stuck.</p>
+
+<h3 id="files-used">Files used</h3>
+
+<ul>
+  <li>app/javascript/components/modal.vue</li>
+  <li>app/javascript/packs/application.js</li>
+  <li>app/views/layouts/application.html.erb</li>
+  <li>app/views/home.html.erb</li>
+</ul>
+
+<h3 id="in-applicationjs">in <code class="highlighter-rouge">application.js</code></h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import Modal from '../components/modal'
+Vue.component('modal', Modal)
+</code></pre></div></div>
+
+<h3 id="in-applicationhtmlerb">in <code class="highlighter-rouge">application.html.erb</code></h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %&gt;`
+</code></pre></div></div>
+
+<h3 id="in-modalvue">in <code class="highlighter-rouge">modal.vue</code></h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;div role="button" class="select-none" @click.prevent="open = !open"&gt;
+      &lt;slot name="link"&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+
+    &lt;div v-show="open" class="bg-neutral-9 absolute top-0 left-0 h-screen w-full flex items-center justify-center"&gt;
+      &lt;div class="bg-white p-4 rounded w-1/3"&gt;
+        &lt;slot name="header"&gt;&lt;/slot&gt;
+        &lt;p&gt;Some filler text blah blah blah blah loreim ipsum dolor sit something or other. &lt;/p&gt;
+        &lt;button v-on:click="toggle" class="mt-4 bg-yellow-5 rounded p-2 font-semibold"&gt;Close&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+
+&lt;script&gt;
+export default {
+    data() {
+      return {
+        open: false,
+      }
+    },
+    methods: {
+      toggle() {
+        this.open = !this.open
+      },
+    },
+    created() {
+      document.addEventListener('keydown', (e) =&gt; {
+          if (this.open &amp;&amp; e.keyCode == 27) {
+            this.open = false
+          }
+      })
+    }
+}
+&lt;/script&gt;
+</code></pre></div></div>
+
+<h3 id="time-to-show-the-modal-in-my-view-file">Time to show the modal in my view file</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;modal&gt;
+    &lt;a slot="link" href="#" class="text-brandyellow hover:text-brandyellowdark hover:bg-white"&gt;OPEN MY MODAL&lt;/a&gt;
+    &lt;div slot="header"&gt;***My SlOt HeAdEr***"&lt;/div&gt;
+&lt;/modal&gt;
+</code></pre></div></div>
+:ET
