@@ -17,22 +17,23 @@ Much to my dismay, after following all the instructions, my text field area look
 
 ![That don't look right!](/assets/tailwind_rich_formatting_wrong.png) 
 
-#### What I believe went wrong
 
 I can't say this for certain with my limited programming knowledge, but I think having the trix styling code in actiontext.scss was messing everything up. I tried a bunch of different things, mostly by process of elimination, and eventually stumbled on something that worked. 
 
-### How to modify the rails edge guides installation instructions for tailwind
+Here's what I found...
+
+## How to modify the rails edge guides installation instructions for tailwind
 
 _TL:DR; Move the content of actiontext.scss into application.scss._
 
 
-##### Step One: Run `rails action_text:install`
+#### Step One: Run `rails action_text:install`
 
 That is, if you haven't already. This will create the migrations needed to allow actiontext to function.
 
 You'll also need active storage set up as well but I'll let you take care of that one.
 
-##### Step Two: Include Trix and ActionText in application.js
+#### Step Two: Include Trix and ActionText in application.js
 
 We still need trix and action text in our application.js pack.
 ```
@@ -40,7 +41,7 @@ We still need trix and action text in our application.js pack.
 require("trix")
 require("@rails/actiontext")
 ```
-##### Step Three:  Cut out the code from actiontext.scss
+#### Step Three:  Cut out the code from actiontext.scss
 
 Go to actiontext.scss and cut out all the code underneath all the comments. That'll be this ditty of code right here:
 
@@ -75,7 +76,7 @@ Go to actiontext.scss and cut out all the code underneath all the comments. That
 }
 ```
 
-##### Step Four: Paste that code under your tailwind code in application.scss
+#### Step Four: Paste that code under your tailwind code in application.scss
 
 Paste your actiontext.scss bit after your tailwind imports in application.scss.
 
@@ -116,7 +117,7 @@ Paste your actiontext.scss bit after your tailwind imports in application.scss.
 
 ```
 
-##### Step Five: Refresh and enjoy your nicely formatted trix editor the way it was meant to
+#### Step Five: Refresh and enjoy your nicely formatted trix editor the way it was meant to
 
 Ah, much better!
 
