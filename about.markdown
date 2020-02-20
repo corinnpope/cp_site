@@ -9,7 +9,11 @@ permalink: /about/
 I’m a girl from Austin, TX who happens to love everything product related.  
 
 ---
-Previously, I worked as a product director at a fast-growing company. I originally applied for the role of product marketer, but landed up making my way through the roles to product director. However, along with that transition, I eventually found myself with little time to create. Creative energy is so important to me and I wanted to find it again. So, I started teaching myself to program. I had known html and css pretty well, but when it came to JS or server-side languages, I was clueless. I picked up Rails because it seemed the most intuitive to me and off I went. 
+Previously, I worked as a product director at a fast-growing company. I originally applied for the role of product marketer, and landed up making my way through the roles to product director. 
+
+However, along with that transition, I eventually found myself with little time to create. Creative energy is so important to me and I wanted to find it again. So, I started teaching myself to program. 
+
+I had known html and css pretty well, but when it came to JS or server-side languages, I was clueless. I picked up Rails because it seemed the most intuitive to me and off I went. 
 
 I'm currently spending most of my days learning by building and have never felt better. 
 
