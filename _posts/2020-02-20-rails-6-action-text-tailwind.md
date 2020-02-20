@@ -11,34 +11,36 @@ I love tailwindcss. It makes styling everything so much easier and more intuitiv
 
 However, my current project also called for a rich text field. 
 
-ActionText and it's ability to "easily" add a rich text area was the obvious fit. So I followed the installation instructions on the edge guides site (https://edgeguides.rubyonrails.org/action_text_overview.html).
+ActionText and it's ability to "easily" add a rich text area was the obvious fit. So I followed the installation instructions on the [edge guides site](https://edgeguides.rubyonrails.org/action_text_overview.html).
 
 Much to my dismay, after following all the instructions, my text field area looked like this: 
 
-![That don't look right](/assets/tailwind_rich_formatting_wrong.png) 
+![That don't look right!](/assets/tailwind_rich_formatting_wrong.png) 
 
-### What went wrong
+#### What I believe went wrong
 
 I can't say this for certain with my limited programming knowledge, but I think having the trix styling code in actiontext.scss was messing everything up. I tried a bunch of different things, mostly by process of elimination, and eventually stumbled on something that worked. 
 
-## How to modify the rails edge guides installation instructions for tailwind
+### How to modify the rails edge guides installation instructions for tailwind
 
-TL:DR; Moving the content of actiontext.scss into the file I had my tailwind stuff worked. 
+_TL:DR; Move the content of actiontext.scss into application.scss._
 
 
-### Step One: Run `rails action_text:install`
+##### Step One: Run `rails action_text:install`
 
-That is, if you haven't already. You'll also need active storage set up as well but I'll let you take care of that one.
+That is, if you haven't already. This will create the migrations needed to allow actiontext to function.
 
-### Step Two: Include Trix and ActionText in application.js
+You'll also need active storage set up as well but I'll let you take care of that one.
 
-We still need trix and action text in our application.js pack
+##### Step Two: Include Trix and ActionText in application.js
+
+We still need trix and action text in our application.js pack.
 ```
 // application.js
 require("trix")
 require("@rails/actiontext")
 ```
-### Step Three:  Cut out the code from actiontext.scss
+##### Step Three:  Cut out the code from actiontext.scss
 
 Go to actiontext.scss and cut out all the code underneath all the comments. That'll be this ditty of code right here:
 
@@ -73,7 +75,7 @@ Go to actiontext.scss and cut out all the code underneath all the comments. That
 }
 ```
 
-### Step Four: Paste that code under your tailwind code in application.scss
+##### Step Four: Paste that code under your tailwind code in application.scss
 
 Paste your actiontext.scss bit after your tailwind imports in application.scss.
 
@@ -114,7 +116,7 @@ Paste your actiontext.scss bit after your tailwind imports in application.scss.
 
 ```
 
-### Step Five: Refresh and enjoy your nicely formatted trix editor the way it was meant to
+##### Step Five: Refresh and enjoy your nicely formatted trix editor the way it was meant to
 
 Ah, much better!
 
