@@ -2,7 +2,7 @@
 layout: post
 title:  "Reflections on My Apprenticeship and What's Next"
 date:   2020-03-25 09:08:49 -0600
-categories: projects, entrepreneurship
+categories: entrepreneurship
 ---
 
 # Leaving
