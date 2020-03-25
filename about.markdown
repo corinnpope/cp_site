@@ -9,6 +9,7 @@ permalink: /about/
 I’m a girl from Austin, TX who happens to love everything product related.  
 
 ---
+
 Previously, I worked as a product director at a fast-growing company. I originally applied for the role of product marketer, and landed up making my way through the roles to product director. 
 
 However, along with that transition, I eventually found myself with little time to create. Creative energy is so important to me and I wanted to find it again. So, I started teaching myself to program. 
