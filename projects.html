@@ -1,0 +1,19 @@
+---
+layout: default
+title: Projects
+---
+<h1 class="font-2xl text-gray-900 font-semibold">Projects</h1>
+
+<ul>
+
+  {% for project in site.projects %}
+    <div class="project my-16">
+      <h2 class="text-gray-900">{{ project.title }}</h2>
+      <li>
+        <p class="font-light text-gray-700">{{ project.lead_text }}</p>
+        <p class="font-light text-gray-700">{{ project.content | markdownify }}</p>
+      </li>
+    </div>
+  {% endfor %}
+
+</ul>
