@@ -1,0 +1,105 @@
+I"�<h1 id="random-product-thoughts---june-2020">Random Product Thoughts - June 2020</h1>
+<p>June 12, 2020</p>
+
+<p>I woke up this morning and just had an insatiable urge to write. About what I’m not sure, so let’s see how the words flow out of my brain this morning. Stream of consciousness…let’s go!</p>
+
+<h2 id="texas-covid-19-cases-are-risingfast">Texas Covid-19 cases are rising…fast</h2>
+
+<p>Texas is currently seeing a massive spike in covid-19 cases. We’re on a three day streak of record highs. If we have to go back into lockdown I’m going to be super bummed and a little bit pissed.</p>
+
+<p>Personally, I don’t really go anywhere “normal” anymore. No library. No coffee shops. No restaurants. No Target runs. Nada. The only thing I still do on occasion is go to Trader Joe’s. And even then, a TJ’s run mean a mask and post-shopping shower. I do run outside, although on the commute through my building to the path I still wear a mask.</p>
+
+<p>Still, there’s something heavier about being under official lockdown, even if without it you still follow all the “rules”.</p>
+
+<h2 id="datagrid-successes-kinda">Datagrid successes (kinda)</h2>
+<p>Anyways, enough with the rant and negativity. Let’s talk about something positive….</p>
+
+<p>I had been struggling with this darn Vue datagrid I have in my app for months now. I knew at the beginning it was going to be the hardest part of building, but I didn’t realize just how hard it would be.</p>
+
+<p>For experienced programmers, it’d probably be a breeze. Maybe it’d take them a week. But since I’m pretty new to Javascript <em>and</em> vue, it was an exercise in patience and persistence that’s lasted for many months.</p>
+
+<p>The table pulls from multiple database tables, has lots of nested JSON, requires sort, search, editing, and deleting.</p>
+
+<p>It look me embarassingly long to go from concept and trying to figure out if this needs javascript (I was holding out hope in the beginning) to actually getting it to a place where I can use it myself.</p>
+
+<p>But…now I can use it myself! And I’m using it to figure out my TODO list and rank it in order of priority.</p>
+
+<p>Up next are fixing an annoying roadmap bug that used to not be there. Then I need to start think about how onboarding is going to work.</p>
+
+<p>It’s actually INCREDIBLY helpful. Now I just add things to my TODO list, rank them, and pick things from the top and work my way down.</p>
+
+<p>I get what they say about eating your own dogfood. Doing so has helped me tweak a number of things already and I’m sure will help me in the future.</p>
+
+<h2 id="planning-out-user-onboarding">Planning out user onboarding</h2>
+
+<p>About onboarding though…</p>
+
+<p>I think the “aha” moment for people will be when they add their first 3-5 items and realize that what they thought may be “top” priority may not be. The question then is how do I get them to that point as fast as humanly possible? And then keep them coming back when they have more items to add?</p>
+
+<p>Part of the things that are required to get them there include:</p>
+<ul>
+  <li>having a scoring model (default RICE one created at account creation)</li>
+  <li>creating a board (have a default board on upon account creation)</li>
+  <li>adding items (haven’t made any defaults, maybe I should add at least one)</li>
+</ul>
+
+<p>I’m wondering if I should add some default items as kind of a meta onboarding. Let people edit them. Let them archive them. Show them on the roadmap.</p>
+
+<p>Would it be just one item? Or should there be a bunch of tasks?</p>
+
+<p>Or maybe a quick demo video would be helpful.</p>
+
+<p>I’ve also tossed around the idea of having a more detailed setup process that lets users select from multiple scoring models or create their own right after signup. There would be different options depending on what stage they’re in and what they’re looking for.</p>
+
+<p>BUT, making them create their own score and <em>then</em> add items may be too complex. What if they get stuck on the scoring stuff and never add items…even if a custom scoring methodology would be better for them longer term?!</p>
+
+<p>If they add items to the default model and <em>then</em> customize their scoring model, they’ll probably have a better intuition as to how the application works and how to handle adding scoring methods. I think that’s probably the better way to go.</p>
+
+<p>Plus, it’ll be fastest to the aha moment.</p>
+
+<p>Both are worth testing out though once there are enough users to draw some conclusions.</p>
+
+<p>Onboarding plan: I’m going to add a default item and/or items and give them the option of watching a quick onboarding video.</p>
+
+<p>Guess I need to record a demo video.</p>
+
+<h2 id="getting-them-to-come-back">Getting them to come back</h2>
+
+<p>How will I get them to come back after they’ve prioritized their list?</p>
+
+<p>I’m not realy a fan of roadmaps with strict dates. I won’t be able to ping them on things that are coming up or are “due” soon.</p>
+
+<p>Could I see if they’ve integrated with anything and ping them when they’ve added something that may also need to be added to Speckled? Perhaps. Although depending on the user, I feel like this may overwhelm then with notifications and that’s no beuno either.</p>
+
+<p>I could go with the variable rewards system in the “Hooked” book model. Although it feels a little dirty. But then again, we’re all PMs here so we all know the game and how to turn it off if we don’t like it. Still.</p>
+
+<p>Maybe broadcast roadmap changes to slack.</p>
+
+<p>I’d also like to add custom backgrounds. That’d be fun.</p>
+
+<p>Or a little celebration when they mark something as done or archive something.</p>
+
+<h2 id="am-i-getting-ahead-of-myself">Am I getting ahead of myself?</h2>
+
+<p>Little things. So many little things. They all need wrapping up.</p>
+
+<p>The last 10% of this project is taking 90% of the time. It’s so frustrating.</p>
+
+<p>There are bugs in the datagrid. If you select more than one item to edit, you can only save one item. Anything else will be overwritten.</p>
+
+<p>There’s a bug in the roadmap. If you drag a story away and that old column is now empty, it just disappears.</p>
+
+<p>There’s a bug in bulk importing. The form only appears after refresh.</p>
+
+<p>There’s a bug in asana imports. Sometimes they don’t work.</p>
+
+<p>I haven’t gotten around to changing the active class in the selection menu. It always looks like you’re on the dashboard.</p>
+
+<p>Still, I think it’s good to think about big things like onboarding and retention in parallel with these little things.</p>
+
+<p>Just so many little things! And so many big things too!</p>
+
+<h2 id="end-ramble">End ramble</h2>
+
+<p>I guess I should stop rambling and get back to work. That was oddly therapeutic though.</p>
+:ET
