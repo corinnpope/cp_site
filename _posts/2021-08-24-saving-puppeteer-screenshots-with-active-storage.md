@@ -150,3 +150,5 @@ end
 
 
 That's essentially it! I hope this saves you some time and trouble if you're trying to screenshots in your app.
+
+P.S  After writing this article, it was pointed out to me that cloudinary offers a URL to PNG converter. (Check out the docs for that here.)[https://cloudinary.com/documentation/url2png_website_screenshots_addon].
