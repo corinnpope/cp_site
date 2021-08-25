@@ -7,7 +7,7 @@ categories: development
 
 I'm working on a side project right now. It lets website owners, copywriters, and designers run [free 5-second tests](https://isthisclear.com).
 
-After posing a question about who is responsible for conversion rates on twitter, someone I know responded about how [their whole team](https://twitter.com/andrewculver/status/1427309562059628549?s=20) is and how a developer created essentially an open form that helped make it really easy for people to get started on a task on their site. 
+After posing a question about who is responsible for conversion rates on twitter, [@andrewculver](https://twitter.com/andrewculver/status/1427309562059628549?s=20) I know responded about how their whole team is and how a developer created essentially an open form that helped make it really easy for people to get started on a task on their site. 
 
 I wondered if there was anything I could apply that same thing to on my own site. I have been having some trouble with getting traffic so I want to make sure that any traffic I do get will be able to get started with as little effort as possible. And when I say "get started", I really mean "create a test". 
 
