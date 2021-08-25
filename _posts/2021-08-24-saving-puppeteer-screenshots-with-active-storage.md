@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Saving Puppeteer Screenshots To Active Record"
+title:  "Saving Puppeteer Screenshots To Active Record In Rails"
 date:   2020-08-24 09:08:49 -0600
 categories: development
 ---
@@ -13,7 +13,7 @@ I wondered if there was anything I could apply that same thing to on my own site
 
 **Entering a URL and taking a screenshot of it using puppeteer** was an idea [@excid3](https://twitter.com/excid3) had suggested a while back I've been meaning to implement. I had some time this weekend and thought I may as well give it a go.
 
-But I ran into a lot of issues when getting it to work. First, since puppeteer is mostly javascript, I knew I'd probably want to use either a lot of stimulusJS or a gem. I don't want to write everything from the ground up. [Grover](https://github.com/Studiosity/grover) landed up fitting the bill. The only thing was that most of the tutorials on it were around PDFs and there wasn't any rails documentation in the docs. 
+But I ran into a lot of issues when getting it to work. First, since puppeteer is mostly javascript, I knew I'd probably want to use either a lot of stimulusJS or a gem. I don't want to write everything from the ground up. [Grover](https://github.com/Studiosity/grover) landed up fitting the bill. The only thing was that most of the tutorials on it were around PDFs and there wasn't any rails specific documentation in the docs on getting it set up with Active Storage. 
 
 Grover gave a nice `.to_png` method that was super handy, but it didn't really give a great explanation of what you were getting with that. So first issue was trying to decode what that meant. Literally. 
 
@@ -22,8 +22,8 @@ Next issue I ran into was getting it to save. I tried what felt like everything.
 Eventually I realized I'd need ImageMagick to save it as an image successfully. And because it wasn't a direct upload, I'd need to use `io:`, `filename:`, and `content_type:` to send my image to Active Storage. 
 
 Things I found helpful and pulled from along the way:
-[An Elastic Beanstalk, Rails, Grover, Puppeteer app](https://github.com/paulmwatson/elasticbeanstalk-rails-grover-puppeteer)
-[SO question on binary data into Active Storage compatible data](https://stackoverflow.com/questions/55787737/is-there-a-way-to-convert-binary-data-into-a-data-type-that-will-allow-activesto)
+* [An Elastic Beanstalk, Rails, Grover, Puppeteer app](https://github.com/paulmwatson/elasticbeanstalk-rails-grover-puppeteer)
+* [SO question on binary data into Active Storage compatible data](https://stackoverflow.com/questions/55787737/is-there-a-way-to-convert-binary-data-into-a-data-type-that-will-allow-activesto)
 
 Here's how I landed up getting it working:
 
@@ -80,6 +80,7 @@ I then store the input of the form in a cookie, take them through the signup pro
 ### The Create Form
 We'll also need a "regular" create form. You could probably figure out how to combine these two, but this way worked best for the flow I wanted to take the users through. 
 
+```
 <%= form_with(model: @test) do |form| %>
   <p class="text-xs text-gray-700">Enter a URL (including the https:// part and we'll optimize it for a 5-second test</p>
   <div class="form-group">
@@ -90,11 +91,12 @@ We'll also need a "regular" create form. You could probably figure out how to co
 
   <%= form.button "Post Test", class: "btn btn-primary" %>
 <% end %>
+```
 
 The form setup is pretty simple. Next up is saving what comes through that form.
 
 ### The Create Method
-So it turns out that the `.to_png` outputs binary (decoded) data. We then give that data to MiniMagick to read and give it a format. 
+So it turns out that the `.to_png` outputs binary data. We then give that data to MiniMagick to read and give it a format. 
 
 We'll need to store attach it as an io object next. The [Rails docs](https://edgeguides.rubyonrails.org/active_storage_overview.html#attaching-file-io-objects) tell us just how to do that.
 
@@ -123,14 +125,14 @@ We'll need to store attach it as an io object next. The [Rails docs](https://edg
 If you want to view the screenshot from active storage, use the following:
 
 ```
-<% if @exam.screenshot_attached? && @exam.screenshot.representable? %>
-  <%= image_tag(@exam.screenshot) %>
+<% if @test.screenshot_attached? && @test.screenshot.representable? %>
+  <%= image_tag(@test.screenshot) %>
 <% end %>
 ```
 
 You can also forgo uploading it at all if all you want to do is view it. 
 
-#### In the controller
+#### Just viewing it (controller)
 ```
 @test_url = ActionController::Base.helpers.sanitize(cookies[:test_url] || '', tags: [])
 @image = Rails.cache.fetch(Digest::MD5.hexdigest("grover_url_png_#{@test_url}")) do
@@ -138,7 +140,7 @@ You can also forgo uploading it at all if all you want to do is view it.
 end
 ```
 
-#### In the view
+#### Just viewing it (in the view)
 ```
 <% if @image %>
   <h4>Test screenshot preview</h4>
