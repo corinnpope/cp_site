@@ -84,7 +84,7 @@ We'll also need a "regular" create form. You could probably figure out how to co
 <%= form_with(model: @test) do |form| %>
   <p class="text-xs text-gray-700">Enter a URL (including the https:// part and we'll optimize it for a 5-second test</p>
   <div class="form-group">
-    <%= form.text_field :test_url, id: "test-url-field", placeholder: "https://yoursite.com", class: "form-control" %>
+    <%= form.text_field :test_url, placeholder: "https://yoursite.com", class: "form-control" %>
   </div>
 
   <!-- more form fields would go here, but skipping them for brevety's sake -->
@@ -144,9 +144,7 @@ end
 ```
 <% if @image %>
   <h4>Test screenshot preview</h4>
-  <figure class="">
-    <%= image_tag "data:image/png;base64,#{@image.html_safe}" %>
-  </figure>
+  <%= image_tag "data:image/png;base64,#{@image.html_safe}" %>
 <% end %>
 ```
 
