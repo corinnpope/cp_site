@@ -8,7 +8,6 @@ permalink: /now/
 
 I’m currently...
 
-- A software engineer at [Vinebase](https://vinebase.com)
-- Working on validating [Viewshed](https://viewshed.io)
+- Doing freelance copywriting for B2B SaaS companies
 - Living in Central Texas
-- Fur and Feather momma to 2 cats and 7 chickens
+- Fur and Feather momma to 2 cats, 1 dog, and 7 chickens
