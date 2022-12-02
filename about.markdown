@@ -16,7 +16,7 @@ I’ve PM’d on a product with net negative churn, another with 80% product-mar
 
 No matter what the role though, I've always been drawn to the writing parts of it. Especially technical writing and copy writing.
 
-Why writing? Clear writing is clear thinking. And showing clear thought means you know your stuff. It's a way of expressing empathy.
+Why writing? Clear writing is clear thinking.
 
 When I'm not writing, I either have my nose stuck in a book, my hands in a pair of gardening gloves, or my feet in a pair of trail runners.
 <br/>
@@ -54,10 +54,9 @@ Copyschool by Copyhackers (arguably the best ROI on this list)
 ---
 <br/>
 <br/>
-### Guess what?
+Best,
 
-<p><img src="/assets/guess_what.jpg" alt="guess what? chicken butt. jk. i want to write copy for you." /></p>
+Corinn 👋
 
-No, not chicken butt. Although I do take care of 7 of them in my backyard.
+<p><img src="/assets/profile-pic.png" alt="guess what? chicken butt. jk. i want to write copy for you." /></p>
 
-It's that I would love to work with you. Check out my <a href="/work-with-me">packages</a> to learn more about what we can accomplish together.
