@@ -1,4 +1,4 @@
-I"t3<h1 id="custom-column-selection-on-a-vue-datagrid">Custom Column Selection on a Vue Datagrid</h1>
+I"*3<h1 id="custom-column-selection-on-a-vue-datagrid">Custom Column Selection on a Vue Datagrid</h1>
 
 <p>On the application I’m building, I wanted users to be able to select which columns they see. Staring at a screen full of data can be headache inducing — especially when trying to parse between what columns are what. When things get bloated, it can be confusing to see ‘customer_id’ and ‘id’ on the same table where you’re trying to find the ‘referral_source’ column. Intercom does this really well.</p>
 
@@ -40,12 +40,12 @@ app/controllers/dashboards_controller.rb
 
 <p>Within your store, add a place to store your items (or whatever name it is you’ll be using)</p>
 
-<p><code class="highlighter-rouge">
+<p>`
 window.store = new Vuex.Store({
     state: {
       items: [],
   },
-</code></p>
+`</p>
 
 <p>We’ll then setup Vue to listen for our datagrid element:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.addEventListener("turbolinks:load", function() {
@@ -67,9 +67,9 @@ window.store = new Vuex.Store({
 
 <p>I have mine in my <code class="highlighter-rouge">views/dashboards.index.html.erb</code> but you can put yours wherever you need to render your datagrid.</p>
 
-<p><code class="highlighter-rouge">
+<p>`
 &lt;%= tag.div id: :datagrid, data: { items: @items.to_json } %&gt;
-</code></p>
+`</p>
 
 <p>Obv, our app needs to know what @items and columnsArray means because it’s a computer and it’s pretty stupid unless you tell it explicity what to do (ok, maybe minus machine learning but I digress…).</p>
 

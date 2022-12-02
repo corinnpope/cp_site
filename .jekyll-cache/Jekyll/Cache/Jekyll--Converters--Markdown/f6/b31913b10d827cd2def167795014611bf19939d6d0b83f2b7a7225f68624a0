@@ -1,0 +1,141 @@
+I"r!<p>I’m working on a side project right now. It lets website owners, copywriters, and designers run <a href="https://isthisclear.com">free 5-second tests</a>.</p>
+
+<p>After posing a question about who is responsible for conversion rates on twitter, <a href="https://twitter.com/andrewculver/status/1427309562059628549?s=20">@andrewculver</a> responded about how his whole team is and how a developer created essentially an open form that helped make it really easy for people to get started on a task on their site.</p>
+
+<p>I wondered if there was anything I could apply that same thing to on my own site. I have been having some trouble with getting traffic so I want to make sure that any traffic I do get will be able to get started with as little effort as possible. And when I say “get started”, I really mean “create a test”.</p>
+
+<p><strong>Entering a URL and taking a screenshot of it using puppeteer</strong> was an idea <a href="https://twitter.com/excid3">@excid3</a> had suggested a while back I’ve been meaning to implement. I had some time this weekend and thought I may as well give it a go.</p>
+
+<p>But I ran into a lot of issues when getting it to work. First, since puppeteer is mostly javascript, I knew I’d probably want to use either a lot of stimulusJS or a gem. I don’t want to write everything from the ground up. <a href="https://github.com/Studiosity/grover">Grover</a> landed up fitting the bill. The only thing was that most of the tutorials on it were around PDFs and there wasn’t any rails specific documentation in the docs on getting it set up with Active Storage.</p>
+
+<p>Grover gave a nice <code class="highlighter-rouge">.to_png</code> method that was super handy, but it didn’t really give a great explanation of what you were getting with that. So first issue was trying to decode what that meant. Literally.</p>
+
+<p>Next issue I ran into was getting it to save. I tried what felt like everything. Most of my time was spent trying to get it into a TempFile, but trying to save that tempfile resulted in a weird authentication error.</p>
+
+<p>Eventually I realized I’d need ImageMagick to save it as an image successfully. And because it wasn’t a direct upload, I’d need to use <code class="highlighter-rouge">io:</code>, <code class="highlighter-rouge">filename:</code>, and <code class="highlighter-rouge">content_type:</code> to send my image to Active Storage.</p>
+
+<p>Things I found helpful and pulled from along the way:</p>
+<ul>
+  <li><a href="https://github.com/paulmwatson/elasticbeanstalk-rails-grover-puppeteer">An Elastic Beanstalk, Rails, Grover, Puppeteer app</a></li>
+  <li><a href="https://stackoverflow.com/questions/55787737/is-there-a-way-to-convert-binary-data-into-a-data-type-that-will-allow-activesto">SO question on binary data into Active Storage compatible data</a></li>
+</ul>
+
+<p>Here’s how I landed up getting it working:</p>
+
+<h3 id="the-setup">The Setup</h3>
+
+<p>I have cloudinary setup as my Active Storage provider. You’ll need to have your own setup as well.</p>
+
+<p>You’ll also need the following in your gemfile:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem 'puppeteer-ruby'
+gem 'grover'
+gem "mini_magick"
+</code></pre></div></div>
+
+<p>And run <code class="highlighter-rouge">bundle install</code>.</p>
+
+<p>You may always want to set up an initializer for grover in config/intializers. Mine looks like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Grover.configure do |config|
+  config.use_png_middleware = true
+  config.options = {
+    viewport: {
+      width: 1024,
+      height: 768
+    },
+    prefer_css_page_size: true,
+    emulate_media: 'screen',
+    cache: true,
+    timeout: 0,
+    wait_until: 'domcontentloaded',
+    full_page: false
+  }
+end
+</code></pre></div></div>
+
+<p>You’ll also want to make sure you have active storage setup for the field you’re using as your file field like so: <code class="highlighter-rouge">has_one_attached :screenshot</code>.</p>
+
+<h3 id="the-first-form">The First Form</h3>
+
+<p>Alright. Setup is done. Next we gotta get our screenshot in somehow. I created this in a partial and rendered it in my homepage. It takes a url from the user.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="" data-turbolinks-animate-persist="true"&gt;
+  &lt;form&gt;
+    &lt;input class="input" type="url" placeholder="Enter a URL" value="&lt;%= @test_url %&gt;" name="test_url" required autofocus&gt;
+      &lt;input type="submit" value="get feedback" class="btn btn-large btn-primary"&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+
+<p>I then store the input of the form in a cookie, take them through the signup process, and spit them out on a create test page with their test url they entered already pre-filled.</p>
+
+<h3 id="the-create-form">The Create Form</h3>
+<p>We’ll also need a “regular” create form. You could probably figure out how to combine these two, but this way worked best for the flow I wanted to take the users through.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= form_with(model: @test) do |form| %&gt;
+  &lt;p class="text-xs text-gray-700"&gt;Enter a URL (including the https:// part and we'll optimize it for a 5-second test&lt;/p&gt;
+  &lt;div class="form-group"&gt;
+    &lt;%= form.text_field :test_url, placeholder: "https://yoursite.com", class: "form-control" %&gt;
+  &lt;/div&gt;
+
+  &lt;!-- more form fields would go here, but skipping them for brevety's sake --&gt;
+
+  &lt;%= form.button "Post Test", class: "btn btn-primary" %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+
+<p>The form setup is pretty simple. Next up is saving what comes through that form.</p>
+
+<h3 id="the-create-method">The Create Method</h3>
+<p>So it turns out that the <code class="highlighter-rouge">.to_png</code> outputs binary data. We then give that data to MiniMagick to read and give it a format.</p>
+
+<p>We’ll need to store attach it as an io object next. The <a href="https://edgeguides.rubyonrails.org/active_storage_overview.html#attaching-file-io-objects">Rails docs</a> tell us just how to do that.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  def create
+    @test = Test.new(test_params)
+    if @test.save
+      test_url = ActionController::Base.helpers.sanitize(test_params[:test_url] || '', tags: [])
+      decoded_data = Grover.new(test_url).to_png
+      image = MiniMagick::Image.read(decoded_data)
+      image.format("png")
+      @test.screenshot.attach(
+        io: StringIO.new(image.to_blob),
+        filename: "#{@test.name}_screenshot.png",
+        content_type: "image/png"
+      )
+      redirect_to test_path, notice: "Test was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+</code></pre></div></div>
+
+<h3 id="viewing-the-newly-created-screenshot">Viewing the Newly Created Screenshot</h3>
+
+<p>If you want to view the screenshot from active storage, use the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% if @test.screenshot_attached? &amp;&amp; @test.screenshot.representable? %&gt;
+  &lt;%= image_tag(@test.screenshot) %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+
+<p>You can also forgo uploading it at all if all you want to do is view it.</p>
+
+<h4 id="just-viewing-it-controller">Just viewing it (controller)</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@test_url = ActionController::Base.helpers.sanitize(cookies[:test_url] || '', tags: [])
+@image = Rails.cache.fetch(Digest::MD5.hexdigest("grover_url_png_#{@test_url}")) do
+  Base64.encode64(Grover.new(@test_url).to_png)
+end
+</code></pre></div></div>
+
+<h4 id="just-viewing-it-in-the-view">Just viewing it (in the view)</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% if @image %&gt;
+  &lt;h4&gt;Test screenshot preview&lt;/h4&gt;
+  &lt;%= image_tag "data:image/png;base64,#{@image.html_safe}" %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+
+<p>That’s essentially it! I hope this saves you some time and trouble if you’re trying to screenshots in your app.</p>
+
+<p>P.S  After writing this article, it was pointed out to me that cloudinary offers a URL to PNG converter. (Check out the docs for that here.)[https://cloudinary.com/documentation/url2png_website_screenshots_addon].</p>
+:ET

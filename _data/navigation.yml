@@ -1,8 +1,10 @@
 - name: Home
   link: /
+- name: Work With Me
+  link: /work-with-me.html
 - name: About
   link: /about.html
-- name: Blog
-  link: /blog.html
+- name: Posts
+  link: /posts.html
 - name: Projects
   link: /projects.html

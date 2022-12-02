@@ -8,6 +8,6 @@ permalink: /now/
 
 I’m currently...
 
-- Doing freelance copywriting for B2B SaaS companies
+- Doing freelance conversion rate engineering (copy, content, and product management) for B2B SaaS companies
 - Living in Central Texas
 - Fur and Feather momma to 2 cats, 1 dog, and 7 chickens

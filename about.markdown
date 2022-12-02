@@ -3,23 +3,61 @@ layout: page
 title: About
 permalink: /about/
 ---
+##  About Me
 
-# Who is Corinn Pope?
+**TL;DR: I’m a full-stack product person who loves to write.**
 
-I’m a full-stack product person from central Texas
 
 ---
+\
+I've done every job in B2B SaaS. Customer support, product management, UI/UX design, sales, engineering, content marketing, SEO and copywriting — you name it.
 
-I was born in the great garden state (a.k.a New Jersey) to an artist and a contractor. I guess you could say I picked up on the love to create pretty and practical things from them from an early age. I played a lot of spots, begrudgingly played a couple of instruments, and had a pretty standard suburban childhood that I'm very thankful for.
+I’ve PM’d on a product with net negative churn, another with 80% product-market fit, and another that has gone on to make six figures in revenue. I've ran the product team at a company with $10M in revenues a year, plus worked as a developer on multiple products for both myself and others. In other words, I know SaaS.
 
-I went into college (JMU) as a business major, but quickly changed my mind when I saw how cool some of the stuff coming out of the ISAT department was during orientation. I changed majors real quick.
+No matter what the role though, I've always been drawn to the writing parts of it. Especially technical writing and copy writing.
 
-That led me to my first job out of college in IT consulting (which I hated), which then led me down a path of 'screw endless status meetings I want to build things'.
+Why writing? Clear writing is clear thinking. And showing clear thought means you know your stuff. It's a way of expressing empathy.
 
-Let's just say I've never looked back.
+When I'm not writing, I either have my nose stuck in a book, my hands in a pair of gardening gloves, or my feet in a pair of trail runners.
+<br/>
+<br/>
+---
+<br/>
+<br/>
+### My style
 
-First up after the corporate gig was building a small info products business, then taking a product management apprenticeship that turned into a product management role, and then software engineering.
+**Everything style**: Keep it simple. Don't use more than needed.
 
-I love listening to customers and prioritizing ruthlessly and with their experience in mind. I love taking ideas for the things they need and bringing them to life through UI/UX, code, and product marketing.
+**Communication style**: Friendly and casual. Sometimes quirky.
 
-When I'm not staring at my computer screen, you can find me trail running in Guadalupe State Park, catching up on a good book, or taking care of my cats and chickens.
+**Writing style**: Chameleon. I write to your brand voice.
+
+**Design style**: The less design, the better.
+
+**Programming style**: Intuitive - I jump into things and see where it takes me.
+
+**Management style**: Trusting. Human. I believe people are fundamentally good.
+<br/>
+<br/>
+---
+<br/>
+<br/>
+### Education
+
+Bachelor's in Integrated Science and Technology with a dual concentration in energy and environment, James Madison University
+
+Master's in Technology Management, University of Maryland University College
+
+Copyschool by Copyhackers (arguably the best ROI on this list)
+<br/>
+<br/>
+---
+<br/>
+<br/>
+### Guess what?
+
+<p><img src="/assets/guess_what.jpg" alt="guess what? chicken butt. jk. i want to write copy for you." /></p>
+
+No, not chicken butt. Although I do take care of 7 of them in my backyard.
+
+It's that I would love to work with you. Check out my <a href="/work-with-me">packages</a> to learn more about what we can accomplish together.

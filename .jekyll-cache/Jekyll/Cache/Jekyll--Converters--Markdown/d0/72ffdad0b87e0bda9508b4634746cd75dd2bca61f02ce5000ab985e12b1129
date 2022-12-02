@@ -1,4 +1,4 @@
-I"E<h1 id="adding-the-current_user-to-an-imported-csv-in-rails-6">Adding the current_user to an imported CSV in Rails 6</h1>
+I" <h1 id="adding-the-current_user-to-an-imported-csv-in-rails-6">Adding the current_user to an imported CSV in Rails 6</h1>
 <p>December 31, 2019</p>
 
 <p>I worked through the GoRails videos on importing and exporting CSV and they were wonderful. If you’re stuck I’d highly recommend checking them out. \</p>
@@ -39,7 +39,7 @@ end
 
 <p>In the <code class="highlighter-rouge">index</code> method of my controller:</p>
 
-<p><code class="highlighter-rouge"> @import = Item::Import.new</code></p>
+<p>` @import = Item::Import.new`</p>
 
 <h3 id="in-my-view">In my view:</h3>
 
